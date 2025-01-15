@@ -1,103 +1,361 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600;700&family=Calistoga&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="index.css">
-    <title>Tech Ticketing App</title>
-    
-</head>
-<body>
-    <div class="header">
-        <h1>Tech Ticketing App</h1>
-    </div>
-    <section id="logged-out-view">
-        <div class="container">
-            
-            <div class="provider-buttons">
-                <button id="sign-in-with-google-btn" class="provider-btn">
-                    <img src="image.png" class="google-btn-logo">
-                    Sign in with Google
-                </button>
-            </div>
-            
-            <div class="auth-fields-and-buttons">
-                <input id="email-input" type="email" placeholder="Email">
-                <input id="password-input" type="password" placeholder="Password">
-                
-                <button id="sign-in-btn" class="primary-btn">Sign in</button>
-                <button id="create-account-btn" class="secondary-btn">Create Account</button>
-            </div>
-        </div>
-    </section>
-    
-    <section id="logged-in-view">
-        <div class="container">
-            <!-- log out button-->
-            <nav>
-                <button id="sign-out-btn" class="icon-btn">
-                    <img src="logout.png" class="icon-img-btn">
-                </button>
-            </nav>
 
-            <div class="app-container">
-                <div class="user-section">
-                    <img id="user-profile-picture">
-                    <h2 id="user-greeting"></h2>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-        <!-- Issue Reporting Form -->
-        <div class="ticket-form">
-            <h2>Report a Technology Issue</h2>
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name">
-            </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="text" id="email" name="email">
-            </div>
-            <div class="form-group">
-                <label for="room">Room Number</label>
-                <input type="text" id="room" name="room">
-            </div>
-            <div class="form-group">
-                <label for="device">Device Type</label>
-                <select id="device" name="device">
-                    <option value="smartboard">Smartboard</option>
-                    <option value="software">Software</option>
-                    <option value="keyboard">Keyboard</option>
-                    <option value="monitor">Monitor</option>
-                    <option value="computer">Computer</option>
-                    <option value="wires">Wires</option>
-                    <option value="printer">Printer</option>
-                    <option value="internet">Internet Connection</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="description">Description of Issue</label>
-                <textarea id="description" name="description" rows="4"></textarea>
-            </div>
-            <div class="form-group">
-                <button type="submit">Submit</button>
-                <button type="reset">Reset</button>
-            </div>
-        </div>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+.header, .footer {
+    background: #333;
+    color: #fff;
+    padding: 1em 0;
+    text-align: center;
+}
+.login-form, .ticket-form, .dashboard {
+    background: #fff;
+    padding: 2em;
+    margin-top: 1em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.form-group {
+    margin-bottom: 1em;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 0.5em;
+}
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%;
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.form-group button {
+    padding: 0.7em 1.5em;
+    background: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.form-group button:hover {
+    background: #555;
+}
+.ticket-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1em;
+}
+.ticket-table th, .ticket-table td {
+    border: 1px solid #ddd;
+    padding: 0.8em;
+    text-align: left;
+}
+.ticket-table th {
+    background: #333;
+    color: #fff;
+}
+.ticket-table tr:nth-child(even) {
+    background: #f4f4f4;
+}
 
 
+:root {
+    --primary-color: #FFDE00;
+    --primary-light-color: #FFE769;
+    --secondary-color: #FFE4BA;
+    --secondary-light-color: #FFF6E8;
+    --post-color: #62EEA8;
+    --delete-color: #FF9F9F;
+    --light-color: #FFFEFC;
+    --grey-color: #747E79;
+    --dark-color: #000000;
 
-    </div>
-    <div class="footer">
-        <p>&copy; 2025 Tech Ticketing App</p>
-    </div>
-    <script src="index.js" type="module"></script>
-</body>
-</html>
+
+    --primary-font: 'Cabin', sans-serif;
+    --seconday-font: 'Calistoga', sans-serif;
+   
+    --border-width: 3px;
+    --element-border-radius: 5px;
+   
+    --button-height: 5px;
+   
+    --small-button-height: 2px;
+   
+    --element-padding: 0.8em;
+   
+    --maximum-width: 320px;
+}
 
 
+html, body {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+}
+
+
+body {
+    color: var(--dark-color);
+    background-color: var(--secondary-light-color);
+    font-family: var(--primary-font);
+}
+
+
+/* === Typography === */
+
+
+h1, h2 {
+    margin: 0;
+}
+
+
+h2 {
+    font-weight: 500;
+}
+
+
+.app-title {
+    font-family: var(--seconday-font);
+    font-size: 2.5em;
+    text-align: center;
+}
+
+
+/* === Sections === */
+
+
+section {
+    margin: 3em 0;
+}
+
+
+.auth-fields-and-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+
+* /*=== User Section === */
+
+
+.user-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8em;
+}
+
+
+.user-section img {
+    width: 3.75em;
+    height: 3.75em;
+    border-radius: 100%;
+    border: var(--border-width) solid var(--dark-color);
+}
+
+
+.user-section h2 {
+    font-size: 1.2em;
+}
+
+
+
+
+/* === Nav === */
+
+
+nav {
+    margin: 0.6em 0;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+.user-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8em;
+}
+
+
+.user-section img {
+    width: 3.75em;
+    height: 3.75em;
+    border-radius: 100%;
+    border: var(--border-width) solid var(--dark-color);
+}
+
+
+.user-section h2 {
+    font-size: 1.2em;
+}
+/* === Structure === */
+
+
+.container {
+    max-width: var(--maximum-width);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+
+#logged-out-view .container {
+    gap: 2em;
+}
+
+
+/* === Common for elements === */
+
+
+input, button {
+    font-family: inherit;
+    padding: var(--element-padding);
+    border-radius: var(--element-border-radius);
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 1.1em;
+    text-align: center;
+    border: var(--border-width) solid var(--dark-color);
+}
+
+
+input:focus, button:focus {
+    outline: none;
+}
+/* this is for the user profile */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3em;
+}
+
+
+/* === Input fields === */
+
+
+input {
+    font-weight: 300;
+}
+
+
+input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: var(--grey-color);
+    opacity: 1; /* Firefox */
+}
+
+
+input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: var(--grey-color);
+}
+
+
+input::-ms-input-placeholder { /* Microsoft Edge */
+    color: var(--grey-color);
+}
+
+
+/* === Buttons === */
+
+
+button {
+    font-weight: 600;
+    width: 100%;
+    border:none;
+}
+
+
+button:hover {
+    cursor: pointer;
+}
+
+
+.primary-btn {
+    background-color: var(--primary-color);
+    box-shadow: 0px var(--button-height) 0px 0px var(--dark-color);
+    position: relative;
+}
+
+
+.primary-btn:hover {
+    top: var(--button-height);
+    box-shadow: none;
+}
+
+
+.secondary-btn {
+    padding: 0.4em;
+    background-color: transparent;
+}
+
+
+.secondary-btn:hover {
+    color: var(--light-color);
+    background-color: var(--dark-color);
+}
+
+
+.provider-btn {
+    color: var(--dark-color);
+    background-color: var(--light-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+    border: 0;
+    box-shadow: 3px 3px 3px 1px rgba(0, 0, 0, .25);
+}
+
+
+.provider-btn:hover {
+    transition: all 0.2s ease;
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, .25);
+}
+
+
+.google-btn-logo {
+    width: 1.375em;
+}
+
+
+/*
+classes to make the sign out buttons work
+*/
+
+
+.icon-img-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    width: 1.875em;
+}
+
+
+.icon-img-btn:hover {
+    filter: invert(0.5);
+}
+/* === IDs === */
+
+
+#logged-out-view {
+    display: none;
+}
+
+
+#logged-in-view {
+    display: none;
+}
+
+
+/*  credit:coursera */
