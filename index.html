@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600;700&family=Calistoga&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
     <title>Tech Ticketing App</title>
-    
+   
 </head>
 <body>
     <div class="header">
@@ -15,24 +15,24 @@
     </div>
     <section id="logged-out-view">
         <div class="container">
-            
+           
             <div class="provider-buttons">
                 <button id="sign-in-with-google-btn" class="provider-btn">
                     <img src="image.png" class="google-btn-logo">
                     Sign in with Google
                 </button>
             </div>
-            
+           
             <div class="auth-fields-and-buttons">
                 <input id="email-input" type="email" placeholder="Email">
                 <input id="password-input" type="password" placeholder="Password">
-                
+               
                 <button id="sign-in-btn" class="primary-btn">Sign in</button>
                 <button id="create-account-btn" class="secondary-btn">Create Account</button>
             </div>
         </div>
     </section>
-    
+   
     <section id="logged-in-view">
         <div class="container">
             <!-- log out button-->
@@ -42,6 +42,7 @@
                 </button>
             </nav>
 
+
             <div class="app-container">
                 <div class="user-section">
                     <img id="user-profile-picture">
@@ -50,6 +51,8 @@
             </div>
         </div>
     </section>
+
+
 
 
         <!-- Issue Reporting Form -->
@@ -90,6 +93,41 @@
             </div>
         </div>
 
+
+
+
+        <!-- Dashboard -->
+        <div class="dashboard">
+            <h2>My Tickets</h2>
+            <table class="ticket-table">
+                <thead>
+                    <tr>
+                        <th>Ticket ID</th>
+                        <th>Submitted Date</th>
+                        <th>Issue Description</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Example rows (dynamic content should be generated with JS or backend) -->
+                    <tr>
+                        <td>001</td>
+                        <td>2025-01-13</td>
+                        <td>Smartboard not working</td>
+                        <td>Pending</td>
+                        <td><button type="button">View Details</button></td>
+                    </tr>
+                    <tr>
+                        <td>002</td>
+                        <td>2025-01-12</td>
+                        <td>Computer won’t boot</td>
+                        <td>In Progress</td>
+                        <td><button type="button">View Details</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
     <div class="footer">
         <p>&copy; 2025 Tech Ticketing App</p>
@@ -97,5 +135,3 @@
     <script src="index.js" type="module"></script>
 </body>
 </html>
-
-
