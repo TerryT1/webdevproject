@@ -1,56 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600;700&family=Calistoga&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="index.css">
-    <title>Tech Ticketing App</title>
-   
-</head>
-<body>
-    <div class="header">
-        <h1>Tech Ticketing App</h1>
-    </div>
-    <section id="logged-out-view">
-        <div class="container">
-           
-            <div class="provider-buttons">
-                <button id="sign-in-with-google-btn" class="provider-btn">
-                    <img src="image.png" class="google-btn-logo">
-                    Sign in with Google
-                </button>
-            </div>
-           
-            <div class="auth-fields-and-buttons">
-                <input id="email-input" type="email" placeholder="Email">
-                <input id="password-input" type="password" placeholder="Password">
-               
-                <button id="sign-in-btn" class="primary-btn">Sign in</button>
-                <button id="create-account-btn" class="secondary-btn">Create Account</button>
-            </div>
-        </div>
-    </section>
-   
-    <section id="logged-in-view">
-        <div class="container">
-            <!-- log out button-->
-            <nav>
-                <button id="sign-out-btn" class="icon-btn">
-                    <img src="logout.png" class="icon-img-btn">
-                </button>
-            </nav>
+<html>
 
+    <head>
+        <title>Ticketing</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600;700&family=Calistoga&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="index.css">
+    </head>
 
-            <div class="app-container">
-                <div class="user-section">
-                    <img id="user-profile-picture">
-                    <h2 id="user-greeting"></h2>
+    <body>
+        <section id="logged-out-view">
+            <div class="container">
+                <h1 class="app-title">Ticketing App</h1>
+                
+                <div class="provider-buttons">
+                    <button id="sign-in-with-google-btn" class="provider-btn">
+                        <img src="assets/google.png" class="google-btn-logo">
+                        Sign in with Google
+                    </button>
+                </div>
+                
+                <div class="auth-fields-and-buttons">
+                    <input id="email-input" type="email" placeholder="Email">
+                    <input id="password-input" type="password" placeholder="Password">
+                    
+                    <button id="sign-in-btn" class="primary-btn">Sign in</button>
+                    <button id="create-account-btn" class="secondary-btn">Create Account</button>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+        
+        <section id="logged-in-view">
+            <div class="container">
+                <!-- log out button-->
+                <nav>
+                    <button id="sign-out-btn" class="icon-btn">
+                        <img src="assets/logOut.png" class="icon-img-btn">
+                    </button>
+                </nav>
+
+                <div class="app-container">
+                    <div class="user-section">
+                        <img id="user-profile-picture" alt="User Profile Picture" />
+                        <h2 id="user-greeting"></h2>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script src="index.js" type="module"></script>
+    </body>
+</html>
+
+    <!--   credit: coursera-->
 
 
 
@@ -109,23 +112,7 @@
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <!-- Example rows (dynamic content should be generated with JS or backend) -->
-                    <tr>
-                        <td>001</td>
-                        <td>2025-01-13</td>
-                        <td>Smartboard not working</td>
-                        <td>Pending</td>
-                        <td><button type="button">View Details</button></td>
-                    </tr>
-                    <tr>
-                        <td>002</td>
-                        <td>2025-01-12</td>
-                        <td>Computer won’t boot</td>
-                        <td>In Progress</td>
-                        <td><button type="button">View Details</button></td>
-                    </tr>
-                </tbody>
+
             </table>
         </div>
     </div>

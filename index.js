@@ -1,9 +1,6 @@
 /* === Imports === */
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
-
-
-
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
 
 /* === Firebase Setup === */
 const firebaseConfig = {
@@ -15,109 +12,129 @@ const firebaseConfig = {
     appId: "1:370766628710:web:f9396ccf4858199086eaa7"
   };
 
+const app = initializeApp(firebaseConfig);
+const auth = getAuth();
 
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app)
-  console.log(auth)
-  console.log(app.options.projectId )
 /* === UI === */
 
-
 /* == UI - Elements == */
+const viewLoggedOut = document.getElementById("logged-out-view");
+const viewLoggedIn = document.getElementById("logged-in-view");
 
+const signInWithGoogleButtonEl = document.getElementById("sign-in-with-google-btn");
 
-const viewLoggedOut = document.getElementById("logged-out-view")
-const viewLoggedIn = document.getElementById("logged-in-view")
+const emailInputEl = document.getElementById("email-input");
+const passwordInputEl = document.getElementById("password-input");
 
+const signInButtonEl = document.getElementById("sign-in-btn");
+const createAccountButtonEl = document.getElementById("create-account-btn");
+const signOutButtonEl = document.getElementById("sign-out-btn");
+const userProfilePictureEl = document.getElementById("user-profile-picture");
 
-const signInWithGoogleButtonEl = document.getElementById("sign-in-with-google-btn")
-
-
-const emailInputEl = document.getElementById("email-input")
-const passwordInputEl = document.getElementById("password-input")
-
-
-const signInButtonEl = document.getElementById("sign-in-btn")
-const createAccountButtonEl = document.getElementById("create-account-btn")
-
+const userGreetingEl = document.getElementById("user-greeting");
 
 /* == UI - Event Listeners == */
-
-
-signInWithGoogleButtonEl.addEventListener("click", authSignInWithGoogle)
-
-
-signInButtonEl.addEventListener("click", authSignInWithEmail)
-createAccountButtonEl.addEventListener("click", authCreateAccountWithEmail)
-
+signInWithGoogleButtonEl.addEventListener("click", authSignInWithGoogle);
+signOutButtonEl.addEventListener("click", authSignOut);
+signInButtonEl.addEventListener("click", authSignInWithEmail);
+createAccountButtonEl.addEventListener("click", authCreateAccountWithEmail);
 
 /* === Main Code === */
-
-
-showLoggedOutView()
-
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        showLoggedInView();
+        showProfilePicture(userProfilePictureEl, user);
+        showUserGreeting(userGreetingEl, user);
+    } else {
+        showLoggedOutView();
+    }
+});
 
 /* === Functions === */
 
-
 /* = Functions - Firebase - Authentication = */
 
-
 function authSignInWithGoogle() {
-    console.log("Sign in with Google")
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+        .then((result) => {
+            console.log("Signed in with Google", result.user);
+        })
+        .catch((error) => {
+            console.error("Error signing in with Google", error.message);
+        });
 }
-
 
 function authSignInWithEmail() {
-    console.log("Sign in with email and password")
+    const email = emailInputEl.value;
+    const password = passwordInputEl.value;
+    
+    signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            console.log("Signed in with email", userCredential.user);
+        })
+        .catch((error) => {
+            console.error("Error signing in with email", error.message);
+        });
 }
-
 
 function authCreateAccountWithEmail() {
-    console.log("Sign up with email and password")
-
-
-    const email = emailInputEl.value
-    const password= passwordInputEl.value
-
-
-
-  createUserWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    showLoggedInView()
-  })
-  .catch((error) => {
-    console.error(error.message)
-  });
-
+    const email = emailInputEl.value;
+    const password = passwordInputEl.value;
+    
+    createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            console.log("Account created", userCredential.user);
+        })
+        .catch((error) => {
+            console.error("Error creating account", error.message);
+        });
 }
 
+function authSignOut() {
+    signOut(auth)
+        .then(() => {
+            console.log("Signed out");
+        })
+        .catch((error) => {
+            console.error("Error signing out:", error.message);
+        });
+}
 
+/* === Functions - UI Functions === */
 
-/* == Functions - UI Functions == */
+function showProfilePicture(imgElement, user) {
+    if (user.photoURL) {
+        imgElement.src = user.photoURL;
+    } else {
+        imgElement.src = "assets/defaultPic.png";
+    }
+}
 
+function showUserGreeting(element, user) {
+    if (user.displayName) {
+        element.textContent = `Hi ${user.displayName}`;
+    } else {
+        element.textContent = "Hello student"
+    }
+}
+
+/* == Functions for View Toggling == */
 
 function showLoggedOutView() {
-    hideElement(viewLoggedIn)
-    showElement(viewLoggedOut)
+    hideView(viewLoggedIn);
+    showView(viewLoggedOut);
 }
-
 
 function showLoggedInView() {
-    hideElement(viewLoggedOut)
-    showElement(viewLoggedIn)
+    hideView(viewLoggedOut);
+    showView(viewLoggedIn);
 }
 
-
-function showElement(element) {
-    element.style.display = "flex"
+function showView(view) {
+    view.style.display = "flex";
 }
 
-
-function hideElement(element) {
-    element.style.display = "none"
+function hideView(view) {
+    view.style.display = "none";
 }
-
-
-//credit: coursera
-
